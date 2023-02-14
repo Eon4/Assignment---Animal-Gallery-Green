@@ -1,7 +1,7 @@
 
 
 /*delay på data hentning i ms for at simulere data hentning online*/
-const myLoadTime = 1000;
+const myLoadTime = 3000;
 
 // reset variables
 let myData = null;
@@ -55,7 +55,8 @@ function resetGallery() {
 }
 
 function buildGallery() {
-
+//THIS LITTLE F#CKER WAS THE REASON WHY IT KEPT SPAWNING IMAGES ON EVERY CLICK ON THE BIG IMG - NOW IT WORKS
+    resetGallery();
 /* brug map funktionen paa vores myData for at finde data for hvert enkelt dyr, og sende det til en funktion der
 kan bygge dit galleri kort for dyret. funktionen hedder buildCard, og har brug for data for dyret*/
 myIndex = 0;
