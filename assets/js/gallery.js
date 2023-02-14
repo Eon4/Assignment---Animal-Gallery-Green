@@ -58,26 +58,34 @@ function buildGallery() {
 
 /* brug map funktionen paa vores myData for at finde data for hvert enkelt dyr, og sende det til en funktion der
 kan bygge dit galleri kort for dyret. funktionen hedder buildCard, og har brug for data for dyret*/
+myIndex = 0;
+
     myData.map((e) => {
-        buildCard(e)
+        buildCard(e, myIndex)
+        myIndex++;
     });
 
 }
 
 
-function buildCard(myAnimalData) {
-    //NOTE: THIS CODE IS VERY SIMILAR TO THE CODE FROM YESTERDAY'S ASSIGNMENT - OPGAVE 4 ----------
+function buildCard(myAnimalData, myIndex) {
+//NOTE: THIS CODE IS VERY SIMILAR TO THE CODE FROM YESTERDAY'S ASSIGNMENT - OPGAVE 4 ----------
 
 /* skriv kode der kan vise data fra myAnimalData i DOM
 husk at bruge createElement og appendChild funktionerne til at bygge semantisk korrekt HTML (se evt codelab om dom elementer opgave 4)
 */
 
+//MIN KONSTANT DER HENTER ELEMENTER FRA ID
     const myCardElement=document.getElementById('app');
 
+//BLOT FOR AT HOLDE ØJE MED OM ALT VIRKER
     console.log(myCardElement);
-    
+//VI DEKLARERE EN VARIBLE OG SKABER ET ELEMENT SOM I DETTE TILFÆLDE ER EN ARTIKEL
     let myArticle=document.createElement('article');
-    
+//JEG HAR SAT NYE ATTRIBUTER HVOR INDEX TIL HVERT IMG ER MARKERET MED ET NR SOM STARTER FRA 0
+    myArticle.setAttribute('data-index', myIndex);
+
+
 //HERE FÅR VI SAT EN NY CLASS SOM KAN ELLERS REDIGERES I CSS -----------
     myArticle.classList.add('galleryCard');
     
@@ -98,6 +106,69 @@ husk at bruge createElement og appendChild funktionerne til at bygge semantisk k
     
     
     myCardElement.appendChild(myArticle);
+
+//LEG MED STYLE OG FOR AT SE OM GALLERIET KAN VIRKE EFTER HENSIGTEN
+    myCardElement.style.cursor = "pointer";
+
+
+    myArticle.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+        console.log(e.target);
+        myIndex = e.currentTarget.dataset.index;
+        createView(myIndex);
+
+    });
+
+
+}
+//- JEG VIL SKABE EN FUNKTION I GALLERIET DER FÅR ET BILLEDE FREM NÅR DER KOMMER BRUGER INPUT VIA ADDEVENTLISTENER - 
+//FØRST SKABES DER EN NY PARAMETER - JEG KALDER DEN myView
+//HUSK AT PARAMETER ER EN NAVNGIVET VARIABLE DER ER SAT I EN FUNKTION OG ER BRUGT TIL AT IMPORTERE ARGUMENTS IND I EN FUNKTION
+
+
+
+
+function createView(myIndex) {
+
+
+    let myAnimalData = myData[myIndex];
+
+    resetGallery();
+
+    let detailCard = document.createElement("article");
+
+    detailCard.setAttribute('data-index', myIndex);
+
+    detailCard.classList.add('detailView');
+    detailCard.style.cursor = 'Pointer';
+
+    detailCard.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+        buildGallery();
+
+    });
+
+    let myHeadLine=document.createElement('h2');
+    myHeadLine.innerHTML=myAnimalData.name;
+    
+    let myImage=document.createElement('img');
+    myImage.src=myAnimalData.picture;
+    myImage.alt=myAnimalData.name;
+    
+    let myDesc = document.createElement('p');
+    myDesc.innerText = myAnimalData.description;
+    
+    detailCard.appendChild(myHeadLine);
+    detailCard.appendChild(myImage);
+    detailCard.appendChild(myDesc);
+    
+    
+    myApp.appendChild(detailCard);
+
+
+
 }
 
 
