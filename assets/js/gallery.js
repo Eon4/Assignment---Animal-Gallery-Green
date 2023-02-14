@@ -41,7 +41,7 @@ function initGallery(dataRecived) {
     // kaldes fra fetchData når data er klar. 
     // set myData variablen til det modtagne data, så det er tilgængelig for alle funktioner
 
-  let myData = dataRecived;
+  myData = dataRecived;
   // kald funktionen resetGallery for at slette indhold i app tagget, som er indeholdt i myApp.
   resetGallery();
   // kald en funktion der kan bygge dit galleri. den hedder buildGallery
@@ -52,7 +52,7 @@ function initGallery(dataRecived) {
 
 function resetGallery() {
     // skriv kode her der kan slette alt html i app tagget husk det er indeholdt i  myApp
-    myApp.innerHTML = "  ";
+    myApp.innerHTML = "";
 
 }
 
@@ -60,13 +60,9 @@ function buildGallery() {
 
     /* brug map funktionen paa vores myData for at finde data for hvert enkelt dyr, og sende det til en funktion der
     kan bygge dit galleri kort for dyret. funktionen hedder buildCard, og har brug for data for dyret*/
-
-    // myData.map((e) => {
-    //     buildCard(e)
-    // });
-
-
-
+    myData.map((e) => {
+        buildCard(e)
+    });
 
 }
 
@@ -75,11 +71,34 @@ function buildCard(myAnimalData) {
     /* skriv kode der kan vise data fra myAnimalData i DOM
     husk at bruge createElement og appendChild funktionerne til at bygge semantisk korrekt HTML (se evt codelab om dom elementer opgave 4)
     */
+
+    const myCardElement=document.getElementById('app');
+
+    console.log(myCardElement);
+    
+    let myArticle=document.createElement('article');
+    
+    //HERE FÅR VI SAT EN NY CLASS SOM KAN ELLERS REDIGERES I CSS
+    myArticle.classList.add('galleryCard');
+    
+    
+    let myHeadLine=document.createElement('h2');
+    myHeadLine.innerHTML=myAnimalData.name;
+    
+    let myImage=document.createElement('img');
+    myImage.src=myAnimalData.picture;
+    myImage.alt=myAnimalData.name;
+    
+    let myDesc = document.createElement('p');
+    myDesc.innerText = myAnimalData.shortDescription;
+    
+    myArticle.appendChild(myHeadLine);
+    myArticle.appendChild(myImage);
+    myArticle.appendChild(myDesc);
+    
+    
+    myCardElement.appendChild(myArticle);
 }
-
-
-
-
 
 
 
