@@ -1,7 +1,7 @@
 
 
 /*delay på data hentning i ms for at simulere data hentning online*/
-const myLoadTime = 2000;
+const myLoadTime = 1000;
 
 // reset variables
 let myData = null;
@@ -23,7 +23,7 @@ function initApp() {
 
 
 function createLoadingScreen() {
-    // byg loading screen her med html dom elementer. og evt et animeret gif eller billede. i vores app tag.
+// byg loading screen her med html dom elementer. og evt et animeret gif eller billede. i vores app tag.
     
   let loadingScreen = document.createElement("div");
 
@@ -32,34 +32,32 @@ function createLoadingScreen() {
 
   myApp.appendChild(loadingScreen);
   loadingScreen.appendChild(loadingImage);
-
-
 }
 
 
 function initGallery(dataRecived) {
-    // kaldes fra fetchData når data er klar. 
-    // set myData variablen til det modtagne data, så det er tilgængelig for alle funktioner
+// kaldes fra fetchData når data er klar. 
+// set myData variablen til det modtagne data, så det er tilgængelig for alle funktioner
 
   myData = dataRecived;
-  // kald funktionen resetGallery for at slette indhold i app tagget, som er indeholdt i myApp.
+// kald funktionen resetGallery for at slette indhold i app tagget, som er indeholdt i myApp.
   resetGallery();
-  // kald en funktion der kan bygge dit galleri. den hedder buildGallery
+// kald en funktion der kan bygge dit galleri. den hedder buildGallery
   buildGallery();
 
 }
 
 
 function resetGallery() {
-    // skriv kode her der kan slette alt html i app tagget husk det er indeholdt i  myApp
+// skriv kode her der kan slette alt html i app tagget husk det er indeholdt i  myApp
     myApp.innerHTML = "";
 
 }
 
 function buildGallery() {
 
-    /* brug map funktionen paa vores myData for at finde data for hvert enkelt dyr, og sende det til en funktion der
-    kan bygge dit galleri kort for dyret. funktionen hedder buildCard, og har brug for data for dyret*/
+/* brug map funktionen paa vores myData for at finde data for hvert enkelt dyr, og sende det til en funktion der
+kan bygge dit galleri kort for dyret. funktionen hedder buildCard, og har brug for data for dyret*/
     myData.map((e) => {
         buildCard(e)
     });
@@ -68,9 +66,11 @@ function buildGallery() {
 
 
 function buildCard(myAnimalData) {
-    /* skriv kode der kan vise data fra myAnimalData i DOM
-    husk at bruge createElement og appendChild funktionerne til at bygge semantisk korrekt HTML (se evt codelab om dom elementer opgave 4)
-    */
+    //NOTE: THIS CODE IS VERY SIMILAR TO THE CODE FROM YESTERDAY'S ASSIGNMENT - OPGAVE 4 ----------
+
+/* skriv kode der kan vise data fra myAnimalData i DOM
+husk at bruge createElement og appendChild funktionerne til at bygge semantisk korrekt HTML (se evt codelab om dom elementer opgave 4)
+*/
 
     const myCardElement=document.getElementById('app');
 
@@ -78,7 +78,7 @@ function buildCard(myAnimalData) {
     
     let myArticle=document.createElement('article');
     
-    //HERE FÅR VI SAT EN NY CLASS SOM KAN ELLERS REDIGERES I CSS
+//HERE FÅR VI SAT EN NY CLASS SOM KAN ELLERS REDIGERES I CSS -----------
     myArticle.classList.add('galleryCard');
     
     
