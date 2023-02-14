@@ -21,8 +21,18 @@ function initApp() {
 }
 
 
+
 function createLoadingScreen() {
     // byg loading screen her med html dom elementer. og evt et animeret gif eller billede. i vores app tag.
+    
+  let loadingScreen = document.createElement("div");
+
+  let loadingImage = document.createElement("img");
+  loadingImage.src = "assets/img/loading01.gif";
+
+  myApp.appendChild(loadingScreen);
+  loadingScreen.appendChild(loadingImage);
+
 
 }
 
@@ -30,29 +40,41 @@ function createLoadingScreen() {
 function initGallery(dataRecived) {
     // kaldes fra fetchData når data er klar. 
     // set myData variablen til det modtagne data, så det er tilgængelig for alle funktioner
-    //kald funktionen resetGallery for at slette indhold i app tagget, som er indeholdt i myApp.
-    // kald en funktion der kan bygge dit galleri. den hedder buildGallery
+
+  let myData = dataRecived;
+  // kald funktionen resetGallery for at slette indhold i app tagget, som er indeholdt i myApp.
+  resetGallery();
+  // kald en funktion der kan bygge dit galleri. den hedder buildGallery
+  buildGallery();
 
 }
 
 
 function resetGallery() {
     // skriv kode her der kan slette alt html i app tagget husk det er indeholdt i  myApp
+    myApp.innerHTML = "  ";
 
 }
 
 function buildGallery() {
 
     /* brug map funktionen paa vores myData for at finde data for hvert enkelt dyr, og sende det til en funktion der
-    kan bygge dit galleri kort for dyret. funktionen hedder buildCard, og har brugfor data for dyret*/
+    kan bygge dit galleri kort for dyret. funktionen hedder buildCard, og har brug for data for dyret*/
+
+    // myData.map((e) => {
+    //     buildCard(e)
+    // });
+
+
+
+
 }
+
 
 function buildCard(myAnimalData) {
     /* skriv kode der kan vise data fra myAnimalData i DOM
     husk at bruge createElement og appendChild funktionerne til at bygge semantisk korrekt HTML (se evt codelab om dom elementer opgave 4)
     */
-
-
 }
 
 
