@@ -111,7 +111,7 @@ husk at bruge createElement og appendChild funktionerne til at bygge semantisk k
 //LEG MED STYLE OG FOR AT SE OM GALLERIET KAN VIRKE EFTER HENSIGTEN
     myCardElement.style.cursor = "pointer";
 
-
+//ADDEVENTLISTENER FOR NÅR DER KLIKKES PÅ ET BILLEDE
     myArticle.addEventListener('click', (e) => {
 
         e.stopPropagation();
@@ -123,7 +123,7 @@ husk at bruge createElement og appendChild funktionerne til at bygge semantisk k
 
 
 }
-//- JEG VIL SKABE EN FUNKTION I GALLERIET DER FÅR ET BILLEDE FREM NÅR DER KOMMER BRUGER INPUT VIA ADDEVENTLISTENER. 
+//- DER SKAL LAVES EN FUNKTION I GALLERIET DER FÅR ET BILLEDE FREM, NÅR DER KOMMER INPUT VIA ADDEVENTLISTENER. 
 //FØRST SKABES DER EN NY PARAMETER - JEG KALDER DEN "myIndex".
 //HUSK AT PARAMETER ER EN NAVNGIVET VARIABLE DER ER SAT I EN FUNKTION OG ER BRUGT TIL AT IMPORTERE ARGUMENTS.
 
@@ -132,11 +132,11 @@ husk at bruge createElement og appendChild funktionerne til at bygge semantisk k
 //HER BLIVER DER SKABT EN FUNCTION FOR EN "MODAL" AF ET BILLEDE NÅR DER BLIVER KLIKKET
 function createView(myIndex) {
 
-
+//VARIABEL FOR VORES DATA
     let myAnimalData = myData[myIndex];
 
     resetGallery();
-
+//VARIABEL FOR ET NÆRBILLEDE MED DATA FOR HVERT ENKELTE BILLEDE
     let detailCard = document.createElement("article");
 
     detailCard.setAttribute('data-index', myIndex);
